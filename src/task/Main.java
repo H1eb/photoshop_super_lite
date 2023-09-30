@@ -24,14 +24,14 @@ public class Main
 				ShowHelp();
 				break;
 			default:
-				System.out.println("Для помощи воспользуйтесь help");
+				System.out.println("Р”Р»СЏ РїРѕРјРѕС‰Рё РІРѕСЃРїРѕР»СЊР·СѓР№С‚РµСЃСЊ help");
 		}
 		
 		
 		
 	}
 	
-	//обраотка запроса mem
+	//РѕР±СЂР°РѕС‚РєР° Р·Р°РїСЂРѕСЃР° mem
 	public static void ParseRequest(String[] args) throws Exception
 	{
 		Map<String, String> res = new HashMap<>();
@@ -44,23 +44,23 @@ public class Main
 		Pair size = new Pair("40", 0);
 		Pair text = new Pair();
 		
-		//получение полного пути
+		//РїРѕР»СѓС‡РµРЅРёРµ РїРѕР»РЅРѕРіРѕ РїСѓС‚Рё
 		full_path = WriteToStr(0, args, ".png");
-		//обработка короткой записи пути
+		//РѕР±СЂР°Р±РѕС‚РєР° РєРѕСЂРѕС‚РєРѕР№ Р·Р°РїРёСЃРё РїСѓС‚Рё
 		if (full_path.str.startsWith("./"))
 		{
 			String command_path = (String)(System.getProperty("user.dir").toString()).replace('\\', '/');
 			full_path.str = full_path.str.replaceFirst(".", command_path);
 		}
 		
-		//создание нового имени файла и место его слхранения
+		//СЃРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ РёРјРµРЅРё С„Р°Р№Р»Р° Рё РјРµСЃС‚Рѕ РµРіРѕ СЃР»С…СЂР°РЅРµРЅРёСЏ
 		int last_symb = full_path.str.lastIndexOf('.');
 		String path = full_path.str.substring(0, last_symb);
 		Pair new_name = new Pair(path +" copy.png", 0);
 		
 		int num = full_path.num;
 		
-		//обработка дополнительных параметров для текста
+		//РѕР±СЂР°Р±РѕС‚РєР° РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ РґР»СЏ С‚РµРєСЃС‚Р°
 		for (int i = 0; i < args.length; i++)
 		{
 			switch (args[i].toString())
@@ -88,10 +88,10 @@ public class Main
 			}
 		}
 		
-		//обработка самого текста
+		//РѕР±СЂР°Р±РѕС‚РєР° СЃР°РјРѕРіРѕ С‚РµРєСЃС‚Р°
 		text = WriteToStr(num, args, "'");
 		
-		//если в запросе есть новое название файла, сохраняем его
+		//РµСЃР»Рё РІ Р·Р°РїСЂРѕСЃРµ РµСЃС‚СЊ РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р°, СЃРѕС…СЂР°РЅСЏРµРј РµРіРѕ
 		if(text.num != args.length-1)
 			new_name = WriteToStr(text.num, args, ".png");
 		
@@ -108,7 +108,7 @@ public class Main
 		ChangeImg(res);
 	}
 	
-	//преобразование запроса в строку
+	//РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Р·Р°РїСЂРѕСЃР° РІ СЃС‚СЂРѕРєСѓ
 	public static Pair WriteToStr(int i, String[] args, String rule)
 	{
 		int check = 0;
@@ -130,20 +130,20 @@ public class Main
 		return res;
 	}
 	
-	//преобразование картинки
+	//РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РєР°СЂС‚РёРЅРєРё
 	public static void ChangeImg(Map<String, String> request) throws Exception
 	{
 		BufferedImage image = ImageIO.read(new File(request.get("full-path")));
 		
 		Graphics g = image.getGraphics();
 
-		//устновка цвета текста
+		//СѓСЃС‚РЅРѕРІРєР° С†РІРµС‚Р° С‚РµРєСЃС‚Р°
 		g.setColor((Color)(Color.class.getField(request.get("color")).get(null)));
 		
-		//установка размера текста
+		//СѓСЃС‚Р°РЅРѕРІРєР° СЂР°Р·РјРµСЂР° С‚РµРєСЃС‚Р°
 		int text_size = Integer.parseInt(request.get("text-size"));
 		
-		//установка стиля текста
+		//СѓСЃС‚Р°РЅРѕРІРєР° СЃС‚РёР»СЏ С‚РµРєСЃС‚Р°
 		Font font = new Font(request.get("font-style")
 							, Font.BOLD
 							, text_size);
@@ -151,7 +151,7 @@ public class Main
 		
 		int position_y = 0;
 		
-		//установление расположения текста по вертикали
+		//СѓСЃС‚Р°РЅРѕРІР»РµРЅРёРµ СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ С‚РµРєСЃС‚Р° РїРѕ РІРµСЂС‚РёРєР°Р»Рё
 		switch (request.get("pos-y"))
 		{
 			case("top"):
@@ -168,7 +168,7 @@ public class Main
 				break;
 		}
 		
-		//установление расположения текста по горизонтали
+		//СѓСЃС‚Р°РЅРѕРІР»РµРЅРёРµ СЂР°СЃРїРѕР»РѕР¶РµРЅРёСЏ С‚РµРєСЃС‚Р° РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
 		switch (request.get("pos-x"))
 		{
 			case("left"):
@@ -196,28 +196,28 @@ public class Main
 		
 		g.dispose();
 		
-		//сохранение файла
+		//СЃРѕС…СЂР°РЅРµРЅРёРµ С„Р°Р№Р»Р°
 		ImageIO.write(image, "png", new File(request.get("new-name")));
 	}
 	
-	//мануал
+	//РјР°РЅСѓР°Р»
 	public static void ShowHelp()
 	{
-		System.out.println("help - мануал по использованию");
-		System.out.println("mem - вставить текст в картинку");
+		System.out.println("help - РјР°РЅСѓР°Р» РїРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЋ");
+		System.out.println("mem - РІСЃС‚Р°РІРёС‚СЊ С‚РµРєСЃС‚ РІ РєР°СЂС‚РёРЅРєСѓ");
 		System.out.println("\t\tmem [path to image] [parameters] [text] [rename file]");
-		System.out.println("\tposition-x - располоэение текста по X (left, center, right)");
+		System.out.println("\tposition-x - СЂР°СЃРїРѕР»РѕСЌРµРЅРёРµ С‚РµРєСЃС‚Р° РїРѕ X (left, center, right)");
 		System.out.println("\t\tdefault: center");
-		System.out.println("\tposition-x - расположение текста по Y (left, center, right)");
+		System.out.println("\tposition-x - СЂР°СЃРїРѕР»РѕР¶РµРЅРёРµ С‚РµРєСЃС‚Р° РїРѕ Y (left, center, right)");
 		System.out.println("\t\tdefault: top");
-		System.out.println("\tfont-style - тип шрифта");
+		System.out.println("\tfont-style - С‚РёРї С€СЂРёС„С‚Р°");
 		System.out.println("\t\tdefault: Monospaced");
-		System.out.println("\ttext-size - размер шрифта");
+		System.out.println("\ttext-size - СЂР°Р·РјРµСЂ С€СЂРёС„С‚Р°");
 		System.out.println("\t\tdefault: 40");
-		System.out.println("\tfont-style - цвет шрифта");
+		System.out.println("\tfont-style - С†РІРµС‚ С€СЂРёС„С‚Р°");
 		System.out.println("\t\tdefault: white");
-		System.out.println("\ttext - добавляемый текст");
-		System.out.println("\trename file - название нового файла");
+		System.out.println("\ttext - РґРѕР±Р°РІР»СЏРµРјС‹Р№ С‚РµРєСЃС‚");
+		System.out.println("\trename file - РЅР°Р·РІР°РЅРёРµ РЅРѕРІРѕРіРѕ С„Р°Р№Р»Р°");
 		System.out.println("\t\tdefault: ");
 	}
 }
